@@ -7,7 +7,7 @@
 const columns = 10,
 			rows = 10,
 			gridSize = 20,
-			icon = "\uf183",
+			icon = "M96 0c35.346 0 64 28.654 64 64s-28.654 64-64 64-64-28.654-64-64S60.654 0 96 0m48 144h-11.36c-22.711 10.443-49.59 10.894-73.28 0H48c-26.51 0-48 21.49-48 48v136c0 13.255 10.745 24 24 24h16v136c0 13.255 10.745 24 24 24h64c13.255 0 24-10.745 24-24V352h16c13.255 0 24-10.745 24-24V192c0-26.51-21.49-48-48-48z",
 			panelPadding = 20,
 			panelWidth = 240,
 			panelHeight = 320;
@@ -84,17 +84,11 @@ function waffleChart(selection, data, category) {
 		.append("g")
 			.attr("transform", d => `translate(${d.column * gridSize}, ${d.row * gridSize})`);
 
-	// Person icon
-	grid.append("text")
-			.attr("class", "grid-icon")
-			.attr("id", d => `${category}-icon-${d.index}`)
-			.attr("x", gridSize / 2)
-			.attr("y", 18)
-			.attr("fill", color("yes"))
-			.attr("font-family", "FontAwesome")
-			.attr("font-size", 18)
-			.attr("text-anchor", "middle")
-			.text(icon);
+	grid.append("path")
+		.attr("class", "grid-icon")
+		.attr("id", d => `${category}-icon-${d.index}`)
+		.attr("d", icon)
+		.attr("transform", "scale(0.035)");
 
 	// Invisible square to capture mouse event
 	grid.append("rect")
